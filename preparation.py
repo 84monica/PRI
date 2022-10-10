@@ -70,8 +70,8 @@ def change_price(prices, currency):
     return newPrices
 
 
-data1299 = pd.read_csv('datasets/google_books_1299.csv', sep=',')
-dataset = pd.read_csv('datasets/google_books_dataset.csv', sep=',')
+data1299 = pd.read_csv('datasets/1299_complete.csv', sep=',')
+dataset = pd.read_csv('datasets/dataset_complete.csv', sep=',')
 
 dataset = dataset.rename(columns={ 'pageCount' : 'page_count', 'averageRating' : 'rating', 'publishedDate' : 'published_date'})
 data1299 = data1299.rename(columns={ 'author' : 'authors', 'generes' : 'categories' })
@@ -94,4 +94,4 @@ finalset = pd.concat([dataset, data1299], axis=0)
 #print(dataset)
 print(finalset)
 
-finalset.to_csv('final_books_dataset.csv')
+finalset.to_csv('final.csv')
