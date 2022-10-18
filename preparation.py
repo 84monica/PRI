@@ -34,6 +34,22 @@ def change_genres(cats):
 
     return newCats
 
+def change_date2(dates):
+    newDates = []
+    for x in dates:
+        dateList = str(x).split("-", 1)
+        if (len(dateList) < 2):
+            newDates.append(float("NaN"))
+            continue
+        year = dateList[0]
+
+        stringDate = year
+
+
+        newDates.append(stringDate)
+
+    return newDates
+
 def change_date(dates):
     newDates = []
     for x in dates:
@@ -44,16 +60,8 @@ def change_date(dates):
         month = dateList[0]
         day, year = dateList[1].split(", ")
 
-        stringDate = ""
-        if (months[month] < 10):
-            stringDate += year + "-0" + str(months[month])
-        else:
-            stringDate += year + "-" + str(months[month])
+        stringDate = year
 
-        if (int(day) < 10):
-            stringDate += "-0" + day
-        else:
-            stringDate += "-" + day
 
         newDates.append(stringDate)
 
@@ -84,10 +92,14 @@ data1299["authors"] = change_author(data1299["authors"])
 data1299["categories"] = fix_genres(data1299["categories"])
 data1299["categories"] = change_genres(data1299["categories"])
 data1299["published_date"] = change_date(data1299["published_date"])
+dataset["published_date"] = change_date2(dataset["published_date"])
 data1299["price"] = change_price(data1299["price"], data1299["currency"])
 
 
 finalset = pd.concat([dataset, data1299], axis=0)
+
+#finalset.drop("published_date", axis=1, inplace=True)
+#finalset.drop("ISBN", axis=1, inplace=True)
 
 #print(data1299["currency"].value_counts())
 #print(data1299["price"])
