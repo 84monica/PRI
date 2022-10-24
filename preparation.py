@@ -39,25 +39,43 @@ def change_date(dates):
     for x in dates:
         dateList = x.split(" ", 1)
         if (len(dateList) < 2):
-            newDates.append(float("NaN"))
+            newDates.append("")
             continue
-        month = dateList[0]
-        day, year = dateList[1].split(", ")
+        _, year = dateList[1].split(", ")
+        if len(year) != 4:
+            year = "" 
 
-        stringDate = ""
-        if (months[month] < 10):
-            stringDate += year + "-0" + str(months[month])
-        else:
-            stringDate += year + "-" + str(months[month])
+        if not(year.isnumeric()):
+            year = ""
 
-        if (int(day) < 10):
-            stringDate += "-0" + day
-        else:
-            stringDate += "-" + day
-
-        newDates.append(stringDate)
+        newDates.append(year)
 
     return newDates
+
+def change_date2(dates):
+    newDates = []
+    for x in dates:
+        dateList = str(x).split("-", 1)
+        year = dateList[0]
+        if len(year) != 4:
+            year = "" 
+
+        if not(str(year).isnumeric()):
+            year = ""
+
+        newDates.append(year)
+
+    return newDates
+
+def fix_isbn(isbns):
+    newIsbn = []
+    for x in isbns:
+        if x == "Original pages" or x == "Flowing text" or x == "Flowing text, Google-generated PDF":
+            x=""
+
+        newIsbn.append(x)
+
+    return newIsbn
 
 def change_price(prices, currency):
     newPrices = []
@@ -70,8 +88,10 @@ def change_price(prices, currency):
     return newPrices
 
 
-data1299 = pd.read_csv('datasets/1299_complete.csv', sep=',')
-dataset = pd.read_csv('datasets/dataset_complete.csv', sep=',')
+# data1299 = pd.read_csv('datasets/1299_complete.csv', sep=',')
+# dataset = pd.read_csv('datasets/dataset_complete.csv', sep=',')
+data1299 = pd.read_csv('datasets/google_books_1299.csv', sep=',')
+dataset = pd.read_csv('datasets/google_books_dataset.csv', sep=',')
 
 dataset = dataset.rename(columns={ 'pageCount' : 'page_count', 'averageRating' : 'rating', 'publishedDate' : 'published_date'})
 data1299 = data1299.rename(columns={ 'author' : 'authors', 'generes' : 'categories' })
@@ -84,14 +104,13 @@ data1299["authors"] = change_author(data1299["authors"])
 data1299["categories"] = fix_genres(data1299["categories"])
 data1299["categories"] = change_genres(data1299["categories"])
 data1299["published_date"] = change_date(data1299["published_date"])
+dataset["published_date"] = change_date2(dataset["published_date"])
 data1299["price"] = change_price(data1299["price"], data1299["currency"])
 
 
 finalset = pd.concat([dataset, data1299], axis=0)
-
-#print(data1299["currency"].value_counts())
-#print(data1299["price"])
-#print(dataset)
+finalset["ISBN"] = fix_isbn(finalset["ISBN"])
 print(finalset)
 
-finalset.to_csv('final.csv')
+#finalset.to_csv('final.csv')
+finalset.to_csv('final_books_dataset.csv')
