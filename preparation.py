@@ -72,7 +72,10 @@ def fix_isbn(isbns):
     for x in isbns:
         if x == "Original pages" or x == "Flowing text" or x == "Flowing text, Google-generated PDF":
             x=""
-
+        else:
+            if not x.find(":") == -1:
+                index = x.find(":")
+                x = x[index+1:]
         newIsbn.append(x)
 
     return newIsbn
@@ -82,6 +85,8 @@ def change_price(prices, currency):
     for i in range(len(prices)):
         if (currency[i] == "Free"):
             newPrices.append(0.0)
+        elif currency[i] == "EUR" or currency[i] == "Not for sale":
+            newPrices.append(prices[i])
         else:
             newPrices.append(round(prices[i] * 0.27, 2))
 
@@ -90,10 +95,10 @@ def change_price(prices, currency):
 
 # data1299 = pd.read_csv('datasets/1299_complete.csv', sep=',')
 # dataset = pd.read_csv('datasets/dataset_complete.csv', sep=',')
-data1299 = pd.read_csv('datasets/google_books_1299.csv', sep=',')
-dataset = pd.read_csv('datasets/google_books_dataset.csv', sep=',')
+data1299 = pd.read_csv('datasets/dataset_intermidiate_1299.csv', sep=',')
+dataset = pd.read_csv('datasets/dataset_intermidiate.csv', sep=',')
 
-dataset = dataset.rename(columns={ 'pageCount' : 'page_count', 'averageRating' : 'rating', 'publishedDate' : 'published_date'})
+dataset = dataset.rename(columns={ 'pageCount' : 'page_count', 'averageRating' : 'rating', 'publishedDate' : 'published_date', 'isbn' : 'ISBN'})
 data1299 = data1299.rename(columns={ 'author' : 'authors', 'generes' : 'categories' })
 
 
