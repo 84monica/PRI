@@ -113,10 +113,10 @@ dataset["published_date"] = change_date2(dataset["published_date"])
 data1299["price"] = change_price(data1299["price"], data1299["currency"])
 
 dataset = dataset.drop_duplicates()
-#data1299 = data1299.drop_duplicates()
 
 finalset = pd.concat([dataset, data1299], axis=0)
 finalset["ISBN"] = fix_isbn(finalset["ISBN"])
+finalset = finalset.drop_duplicates(subset="ISBN", keep="first")
 print(finalset)
 
 #finalset.to_csv('final.csv')
