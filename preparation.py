@@ -72,6 +72,8 @@ def fix_isbn(isbns):
     for x in isbns:
         if x == "Original pages" or x == "Flowing text" or x == "Flowing text, Google-generated PDF":
             x=""
+        if not(x.isnumeric()):
+            x=""
         else:
             if not x.find(":") == -1:
                 index = x.find(":")
