@@ -1,23 +1,73 @@
 {
 	"add-field-type": [
         {
-            "name":"courseTitle",
+            "name":"normalBookTextField",
             "class":"solr.TextField",
             "indexAnalyzer":{
                 "tokenizer":{
-                    "class":"solr.StandardTokenizerFactory"
+                    "class":"solr.ClassicTokenizerFactory"
                 },
                 "filters":[
                     {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.ClassicFilterFactory"},
                     {"class":"solr.LowerCaseFilterFactory"}
                 ]
             },
             "queryAnalyzer":{
                 "tokenizer":{
-                    "class":"solr.StandardTokenizerFactory"
+                    "class":"solr.ClassicTokenizerFactory"
                 },
                 "filters":[
                     {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.ClassicFilterFactory"},
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            }
+        },
+        {
+            "name":"normalBookIntField",
+            "class":"solr.IntPointField",
+            "indexAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.ClassicTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.ClassicFilterFactory"},
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            },
+            "queryAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.ClassicTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.ClassicFilterFactory"},
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            }
+        },
+        {
+            "name":"normalBookFloatField",
+            "class":"solr.FloatPointField",
+            "indexAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.ClassicTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.ClassicFilterFactory"},
+                    {"class":"solr.LowerCaseFilterFactory"}
+                ]
+            },
+            "queryAnalyzer":{
+                "tokenizer":{
+                    "class":"solr.ClassicTokenizerFactory"
+                },
+                "filters":[
+                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
+                    {"class":"solr.ClassicFilterFactory"},
                     {"class":"solr.LowerCaseFilterFactory"}
                 ]
             }
@@ -26,8 +76,74 @@
     "add-field": [
         {
             "name": "title",
-            "type": "courseTitle",
+            "type": "normalBookTextField",
+            "indexed": true
+        },
+        {
+            "name": "author",
+            "type": "normalBookTextField",
+            "indexed": true
+        },
+        {
+            "name": "language",
+            "type": "normalBookTextField",
+            "indexed": true
+        },
+        {
+            "name": "categories",
+            "type": "normalBookTextField",
+            "indexed": true
+        },
+        {
+            "name": "currency",
+            "type": "normalBookTextField",
+            "indexed": true
+        },
+        {
+            "name": "maturityRating",
+            "type": "normalBookTextField",
+            "indexed": true
+        },
+        {
+            "name": "ISBN",
+            "type": "normalBookTextField",
+            "indexed": true
+        },
+        {
+            "name": "description",
+            "type": "normalBookTextField",
+            "indexed": true
+        },
+        {
+            "name": "publisher",
+            "type": "normalBookTextField",
+            "indexed": true
+        },
+        {
+            "name": "rating",
+            "type": "normalBookFloatField",
+            "indexed": true
+        },
+        {
+            "name": "price",
+            "type": "normalBookFloatField",
+            "indexed": true
+        },
+        {
+            "name": "published_date",
+            "type": "normalBookIntField",
+            "indexed": true
+        },
+        {
+            "name": "page_count",
+            "type": "normalBookIntField",
+            "indexed": true
+        },
+        {
+            "name": "voters",
+            "type": "normalBookIntField",
             "indexed": true
         }
     ]
+    
 }
