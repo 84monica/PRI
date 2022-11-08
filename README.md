@@ -23,3 +23,9 @@
 
 * Returns Books about Engineering from cheapest to more expensive and also ordered by highest rating. Only Prints title, language, categories, price, page_count and ISBN
 * `curl 'http://localhost:8983/solr/books/select?fl=title%2C%20language%2C%20categories%2C%20price%2C%20page_count%2C%20ISBN&fq=price%3A%5B0%20TO%20*%5D&indent=true&q.op=OR&q=categories%3A%22Engineering%22%0Adescription%3A%22Engineering%22&rows=36&sort=rating%20desc%2C%20price%20asc' -d 'omitHeader=true'`
+
+* Returns Books Comic Books. Only Prints title, authors, categories, published_date, price
+* `curl 'http://localhost:8983/solr/books/select?fl=title%2C%20authors%2C%20published_date%2C%20categories%2C%20price&indent=true&q.op=OR&q=categories%3Acomics' -d 'omitHeader=true'`
+
+* Returns Books about Murder in the Mystery Category. Only title, authors, categories, rating, page_count, price and description
+* `curl 'http://localhost:8983/solr/books/select?fl=title%2C%20authors%2C%20categories%2C%20rating%2C%20page_count%2C%20price%2C%20description&indent=true&q.op=AND&q=description%3Amurder%0Acategories%3Amystery' -d 'omitHeader=true'`
