@@ -4,14 +4,22 @@ import numpy as np
 import matplotlib.pyplot as plt
 import pandas as pd
 
-results = requests.get('http://localhost:8983/solr/books/select?fl=title%2C%20authors%2C%20rating%2C%20published_date%2C%20description&indent=true&q.op=OR&q=description%3A%22dragons%22%0Atitle%3A%22dragons%22%0Acategories%3A%22fantasy%22&rows=25&sort=rating%20desc').json()['response']['docs']
+#results = requests.get('http://localhost:8983/solr/books/select?fl=title%2C%20authors%2C%20categories%2C%20rating%2C%20price%2C%20published_date%2C&fq=rating%3A%5B4%20TO%20*%5D%2C%20published_date%3A%5B2000%20TO%202020%5D%2C%20price%3A%5B*%20TO%204%5D&indent=true&q.op=AND&q=categories%3Afiction').json()['response']['docs']
+#results = requests.get('http://localhost:8983/solr/books/select?fl=title%2C%20authors%2C%20rating%2C%20published_date%2C%20description&indent=true&q.op=OR&q=description%3A%22dragons%22%0Atitle%3A%22dragons%22%0Acategories%3A%22fantasy%22&rows=25&sort=rating%20desc').json()['response']['docs']
+#results = requests.get('http://localhost:8983/solr/books/select?fl=title%2C%20language%2C%20categories%2C%20price%2C%20page_count%2C%20ISBN&fq=price%3A%5B0%20TO%20*%5D&indent=true&q.op=OR&q=categories%3A%22Engineering%22%0Adescription%3A%22Engineering%22&rows=36&sort=rating%20desc%2C%20price%20asc').json()['response']['docs']
+#results = requests.get('http://localhost:8983/solr/books/select?fl=title%2C%20authors%2C%20published_date%2C%20categories%2C%20price&indent=true&q.op=OR&q=categories%3Acomics').json()['response']['docs']
+results = requests.get('http://localhost:8983/solr/books/select?fl=title%2C%20authors%2C%20categories%2C%20rating%2C%20page_count%2C%20price%2C%20description&indent=true&q.op=AND&q=description%3Amurder%0Acategories%3Amystery').json()['response']['docs']
 
-relevant = list(map(lambda el: el.strip(), open("evaluation/q2rels.txt").readlines()))
 
+relevant = list(map(lambda el: el.strip(), open("evaluation/q5rels.txt").readlines()))
+
+titles = []
 for doc in results:
-    print(doc['title'][0])
+    titles.append(doc['title'][0]) 
 
-"""
+comp = [x for x in relevant if x in titles]
+
+
 metrics = {}
 metric = lambda f: metrics.setdefault(f.__name__, f)
 
@@ -43,11 +51,16 @@ def ar():
 @metric
 def acc():
     sum = 0.0
-    for i in range(len(results)):
-        if (i == len(relevant)):
-            return sum / len(results)
-        if (results[i]['title'][0] == relevant[i]):
+    comp = [x for x in relevant if x in titles]
+    j = 0
+    for doc in results:
+        if (doc['title'][0] not in comp):
+            continue
+        if (doc['title'][0] == comp[j]):
             sum += 1.0
+            j += 1
+        else:
+            j += 1
     return sum / len(results)
 
 def calculate_metric(key):
@@ -66,7 +79,7 @@ df = pd.DataFrame([['Metric', 'Value']] +
     ]
 )
 
-with open('evaluation/results_Q2.tex', 'w') as tf:
+with open('evaluation/results_Q5.tex', 'w') as tf:
     tf.write(df.to_latex())
 
 precision_recall_match = {k: v for k, v in zip(recall_values, precision_values)}
@@ -82,5 +95,4 @@ for idx, step in enumerate(recall_values):
 
 disp = PrecisionRecallDisplay([precision_recall_match.get(r) for r in recall_values], recall_values)
 disp.plot()
-plt.savefig('images/precision_recall_Q2.png')
-"""
+plt.savefig('images/precision_recall_Q5.png')

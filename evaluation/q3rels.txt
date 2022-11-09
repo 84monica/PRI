@@ -2,12 +2,15 @@ Who's who in Science and Engineering
 Proceedings of the Second International Conference on Computing in Civil Engineering, 5-9 June 1985, Hangzhou, China
 Chemical Engineering Progress
 The Journal of Engineering Education
-Engineering Mechanics Devoted to Mechanical Civil, Mining and Electrical Engineering
-Engineering and Mining Journal
 Smartphones
-Basic Blueprint Reading and Sketching
 Refrigeration Engineering
+Official Gazette of the United States Patent Office
+Engineering and Mining Journal
+Engineering Mechanics Devoted to Mechanical Civil, Mining and Electrical Engineering
 Directory of Foreign Manufacturers in the United States
+Commencement[programme]
+Basic Blueprint Reading and Sketching
+The Complete Art of War
 Mechanical Engineering
 How to Build an Android
 The Complete Book of Locks and Locksmithing, Seventh Edition
@@ -17,12 +20,12 @@ Social Software Engineering
 The Mechanical Engineer's Pocket-book
 Concepts of Chemical Engineering 4 Chemists
 Domain-based Parallelism and Problem Decomposition Methods in Computational Science and Engineering
-Network-Aware Security for Group Communications
 Solid State Physics
+Network-Aware Security for Group Communications
 Engineering Information Security
 Knowledge-Based Intelligent Information and Engineering Systems
-Advances in Imaging and Electron Physics
 Molecular Modeling and Theory in Chemical Engineering
+Advances in Imaging and Electron Physics
 Software Engineering Handbook
 Data Science and Knowledge Engineering for Sensing Decision Support
 Sources of Engineering Information
