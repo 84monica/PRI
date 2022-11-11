@@ -26,51 +26,11 @@
         },
         {
             "name":"normalBookIntField",
-            "class":"solr.IntPointField",
-            "indexAnalyzer":{
-                "tokenizer":{
-                    "class":"solr.ClassicTokenizerFactory"
-                },
-                "filters":[
-                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
-                    {"class":"solr.ClassicFilterFactory"},
-                    {"class":"solr.LowerCaseFilterFactory"}
-                ]
-            },
-            "queryAnalyzer":{
-                "tokenizer":{
-                    "class":"solr.ClassicTokenizerFactory"
-                },
-                "filters":[
-                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
-                    {"class":"solr.ClassicFilterFactory"},
-                    {"class":"solr.LowerCaseFilterFactory"}
-                ]
-            }
+            "class":"solr.IntPointField"
         },
         {
             "name":"normalBookFloatField",
-            "class":"solr.FloatPointField",
-            "indexAnalyzer":{
-                "tokenizer":{
-                    "class":"solr.ClassicTokenizerFactory"
-                },
-                "filters":[
-                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
-                    {"class":"solr.ClassicFilterFactory"},
-                    {"class":"solr.LowerCaseFilterFactory"}
-                ]
-            },
-            "queryAnalyzer":{
-                "tokenizer":{
-                    "class":"solr.ClassicTokenizerFactory"
-                },
-                "filters":[
-                    {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
-                    {"class":"solr.ClassicFilterFactory"},
-                    {"class":"solr.LowerCaseFilterFactory"}
-                ]
-            }
+            "class":"solr.FloatPointField"
         }
     ],
     "add-field": [
@@ -136,7 +96,7 @@
         },
         {
             "name": "page_count",
-            "type": "normalBookIntField",
+            "type": "normalBookFloatField",
             "indexed": true
         },
         {
