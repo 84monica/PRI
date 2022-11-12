@@ -96,7 +96,7 @@
         },
         {
             "name": "page_count",
-            "type": "normalBookIntField",
+            "type": "normalBookFloatField",
             "indexed": true
         },
         {
