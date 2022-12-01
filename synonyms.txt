@@ -1,10 +1,13 @@
-game, play
+homicide, murder, kill, crime
 software, computer, data science, technology
+dragon, dragons, creature
+military, war, weapons
+game, play
+small, smallest, tiniest, tiny
+flowers, plants
 health, healthy, doctor
 big, huge, enormous
-small, smallest, tiniest, tiny
 happy, happiness, happier
-military, war, weapons
 winery, vineyard
 valueless, worthless
 vague, indistinct
@@ -44,4 +47,3 @@ garbage, rubbish
 garbage can, trashcan
 gay, homesexual
 hard, tough
-homicide, murder

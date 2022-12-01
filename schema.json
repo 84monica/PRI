@@ -19,7 +19,6 @@
                 },
                 "filters":[
                     {"class":"solr.SynonymGraphFilterFactory", "expand":"true", "ignoreCase":"true", "synonyms":"synonyms.txt"},
-                    {"class":"solr.SnowballPorterFilterFactory", "language":"English"},
                     {"class":"solr.ASCIIFoldingFilterFactory", "preserveOriginal":true},
                     {"class":"solr.ClassicFilterFactory"},
                     {"class":"solr.LowerCaseFilterFactory"}
