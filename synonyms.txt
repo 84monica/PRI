@@ -1,3 +1,10 @@
+game, play
+software, computer, data science, technology
+health, healthy, doctor
+big, huge, enormous
+small, smallest, tiniest, tiny
+happy, happiness, happier
+military, war, weapons
 winery, vineyard
 valueless, worthless
 vague, indistinct
@@ -38,4 +45,3 @@ garbage can, trashcan
 gay, homesexual
 hard, tough
 homicide, murder
-game, play

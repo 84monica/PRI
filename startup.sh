@@ -7,7 +7,7 @@ solr start
 
 sleep 10
 
-cp /data/synonyms.txt /var/solr/data/books/synonyms.txt
+cp /data/synonyms.txt /var/solr/data/books/conf
 
 # Schema definition via API
 curl -X POST -H 'Content-type:application/json' \
