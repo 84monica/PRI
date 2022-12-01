@@ -6,10 +6,10 @@ import requests
 search_url = 'http://localhost:8983/solr/books/select'
 
 title = input("Insert title: ")
-category = input("Insert category: ")
+#category = input("Insert category: ")
 
 query = {
-    'q': 'title:'+title+'AND categories:'+category,
+    'q': 'title:'+title,
 }
 
 response = requests.post(search_url, query)
