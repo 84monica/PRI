@@ -6,6 +6,8 @@ synonyms_file = open('synonyms.txt', 'a')
 dictionary_json = json.load(dictionary_file)
 
 for value in dictionary_json:
+    if len(dictionary_json[value]) == 0:
+        continue;
     line = ""
     line += value
     line += ", "
